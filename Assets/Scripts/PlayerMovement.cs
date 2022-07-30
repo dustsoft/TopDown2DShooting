@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Camera cam;
     public float acceleration;
-    public float playerMoveSpeed = 5;
+    //public float playerMoveSpeed = 5;
 
     Vector2 mousePos;
     Vector2 playerMovement;
@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        //ApplyAcceleration();
-        ArrowKeysMovement();
+        ApplyAcceleration();
+        //ArrowKeysMovement();
         ClampPosition();
     }
 
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
         #endregion
-        rb.velocity = new Vector2(playerMovement.x * playerMoveSpeed, playerMovement.y * playerMoveSpeed);
+        //rb.velocity = new Vector2(playerMovement.x * playerMoveSpeed, playerMovement.y * playerMoveSpeed);
     }
 
     void ApplyAcceleration()

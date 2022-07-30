@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerMovement player;
     public ParticleSystem explosion;
     public int playerLives = 3;
+    public Text livesValue;
     public float respawnTime = 3.0f;
     public int score = 0;
+    public Text scoreValue;
 
+    void Update()
+    {
+        ScoreDisplay();
+        LivesDisplay();
+    }
 
     public void PlayerDied()
     {
@@ -18,7 +26,7 @@ public class GameManager : MonoBehaviour
         CMShake.Instance.CameraShake(5.5f, 0.75f);
         this.explosion.Play();
 
-        if (this.playerLives < 0)
+        if (this.playerLives < 1)
         {
             GameOver();
         }
@@ -67,9 +75,19 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        this.playerLives = 3;
-        this.score = 0;
+        //this.playerLives = 3;
+        //this.score = 0;
 
-        Invoke(nameof(Respawn), respawnTime);
+        //Invoke(nameof(Respawn), respawnTime);
+    }
+
+    void ScoreDisplay()
+    {
+        scoreValue.text = score.ToString("#,#");
+    }
+
+    void LivesDisplay()
+    {
+        livesValue.text = playerLives.ToString();
     }
 }

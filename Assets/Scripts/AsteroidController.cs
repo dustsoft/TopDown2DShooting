@@ -25,17 +25,14 @@ public class AsteroidController : MonoBehaviour
         _rigidBody.mass = this._size;
     }
 
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Laser")
         {
             if ((this._size * 0.5f) > this._minSize)
             {
+                CreateSplit();
+                CreateSplit();
                 CreateSplit();
                 CreateSplit();
                 CreateSplit();
