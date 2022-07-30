@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
             Vector2 accelForce = transform.up * Time.deltaTime * acceleration * 10;
             rb.AddForce(accelForce, ForceMode2D.Force);
         }
-
     }
 
     void ArrowKeysMovement()

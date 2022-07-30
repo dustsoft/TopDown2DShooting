@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI Info")]
+    [SerializeField] GameObject _uiCanvas;
+
+    [Header("Player Info")]
     public PlayerMovement player;
-    public ParticleSystem explosion;
     public int playerLives = 3;
     public Text livesValue;
     public float respawnTime = 3.0f;
+
+    [Header("Score Info")]
     public int score = 0;
     public Text scoreValue;
+    public int highScore;
+    public Text highScoreValue;
+
+    [Header("Particles")]
+    public ParticleSystem explosion;
 
     void Update()
     {
@@ -75,10 +86,23 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        //this.playerLives = 3;
-        //this.score = 0;
+        SaveValues();
+        LoadValues();
 
-        //Invoke(nameof(Respawn), respawnTime);
+        _uiCanvas.SetActive(true);
+
+        highScoreValue.text = highScore.ToString("#,#");
+
+    }
+
+    public void PlayAgain()
+    {
+        EditorSceneManager.LoadScene("MainGameScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     void ScoreDisplay()
@@ -90,4 +114,20 @@ public class GameManager : MonoBehaviour
     {
         livesValue.text = playerLives.ToString();
     }
+
+    void SaveValues()
+    {
+        PlayerPrefs.SetInt("score", score);
+
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("highScore", score);
+        }
+    }
+
+    void LoadValues()
+    {
+        highScore = PlayerPrefs.GetInt("highScore");
+    }
+
 }

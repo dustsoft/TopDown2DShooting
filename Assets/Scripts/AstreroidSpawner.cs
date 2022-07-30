@@ -17,12 +17,6 @@ public class AstreroidSpawner : MonoBehaviour
         InvokeRepeating(nameof(Spawn), this._spawnRate, this._spawnRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void Spawn()
     {
         for (int i = 0; i < this._spawnAmount; i++)
