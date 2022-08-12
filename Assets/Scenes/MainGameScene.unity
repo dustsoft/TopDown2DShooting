@@ -6962,6 +6962,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6771497314369211037, guid: 67b868887559f492d842d5d1032c8edf, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771497314369211037, guid: 67b868887559f492d842d5d1032c8edf, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8160377
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771497314369211037, guid: 67b868887559f492d842d5d1032c8edf, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9818036
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771497314369211037, guid: 67b868887559f492d842d5d1032c8edf, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6771497314369211038, guid: 67b868887559f492d842d5d1032c8edf, type: 3}
       propertyPath: m_Name
       value: PlayerShip
