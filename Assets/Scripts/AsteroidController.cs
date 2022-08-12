@@ -53,6 +53,7 @@ public class AsteroidController : MonoBehaviour
         AsteroidController half = Instantiate(this, position, this.transform.rotation);
         half._size = this._size * 0.5f;
         half.SetTrajectory(Random.insideUnitCircle.normalized * this._speed * 1.15f);
+        Destroy(this.gameObject, this._maxLifeTime);
     }
 
     public void SetTrajectory(Vector2 direction)

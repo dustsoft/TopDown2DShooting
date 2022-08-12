@@ -9,6 +9,7 @@ public class AstreroidSpawner : MonoBehaviour
     public float _spawnRate = 2.0f;
     public int _spawnAmount = 1;
     public float _spawnDistance = 15.0f;
+    bool spawnActive = true;
 
     [SerializeField] private GameObject _asteroidContainer;
 
@@ -19,18 +20,32 @@ public class AstreroidSpawner : MonoBehaviour
 
     void Spawn()
     {
-        for (int i = 0; i < this._spawnAmount; i++)
+        if (spawnActive == true)
         {
-            Vector3 spawnDirection = Random.insideUnitCircle.normalized * this._spawnDistance;
-            Vector3 spawnPoint = this.transform.position + spawnDirection;
+            for (int i = 0; i < this._spawnAmount; i++)
+            {
+                Vector3 spawnDirection = Random.insideUnitCircle.normalized * this._spawnDistance;
+                Vector3 spawnPoint = this.transform.position + spawnDirection;
 
-            float variance = Random.Range(-this._trajectoryVariance, this._trajectoryVariance);
-            Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
+                float variance = Random.Range(-this._trajectoryVariance, this._trajectoryVariance);
+                Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
 
-            AsteroidController asteroid = Instantiate(this._asteroidPrefab, spawnPoint, rotation);
-            asteroid.transform.parent = _asteroidContainer.transform;
-            asteroid._size = Random.Range(asteroid._minSize, asteroid._maxSize);
-            asteroid.SetTrajectory(rotation * -spawnDirection);
+                AsteroidController asteroid = Instantiate(this._asteroidPrefab, spawnPoint, rotation);
+                asteroid.transform.parent = _asteroidContainer.transform;
+                asteroid._size = Random.Range(asteroid._minSize, asteroid._maxSize);
+                asteroid.SetTrajectory(rotation * -spawnDirection);
+            }
         }
     }
+
+    public void DeactivateSpawn()
+    {
+        spawnActive = false;
+    }
+
+    public void ActivateSpawn()
+    {
+        spawnActive = true;
+    }
+
 }

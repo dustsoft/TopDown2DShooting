@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem explosion;
 
+    [Header("Asteroid Spawner Info")]
+    public GameObject astreroidSpawner;
+
     void Update()
     {
         ScoreDisplay();
@@ -93,11 +96,33 @@ public class GameManager : MonoBehaviour
 
         highScoreValue.text = highScore.ToString("#,#");
 
+        GameObject[] killEmAll;
+        killEmAll = GameObject.FindGameObjectsWithTag("Asteroid");
+        for (int i = 0; i < killEmAll.Length; i++)
+        {
+            Destroy(killEmAll[i].gameObject);
+        }
+
+        FindObjectOfType<AstreroidSpawner>().DeactivateSpawn();
+        astreroidSpawner.SetActive(false);
     }
 
     public void PlayAgain()
     {
-        EditorSceneManager.LoadScene("MainGameScene");
+        astreroidSpawner.SetActive(true);
+        FindObjectOfType<AstreroidSpawner>().ActivateSpawn();
+
+        GameObject[] killEmAll;
+        killEmAll = GameObject.FindGameObjectsWithTag("Asteroid");
+        for (int i = 0; i < killEmAll.Length; i++)
+        {
+            Destroy(killEmAll[i].gameObject);
+        }
+
+        _uiCanvas.SetActive(false);
+        playerLives = 3;
+        score = 0;
+        Respawn();
     }
 
     public void QuitGame()
@@ -117,12 +142,12 @@ public class GameManager : MonoBehaviour
 
     void SaveValues()
     {
-        PlayerPrefs.SetInt("score", score);
 
         if (score > highScore)
         {
             PlayerPrefs.SetInt("highScore", score);
         }
+
     }
 
     void LoadValues()

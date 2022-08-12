@@ -750,6 +750,7 @@ MonoBehaviour:
   highScore: 0
   highScoreValue: {fileID: 2102018467}
   explosion: {fileID: 573534321}
+  astreroidSpawner: {fileID: 1488273946}
 --- !u!4 &506079754
 Transform:
   m_ObjectHideFlags: 0
@@ -6207,7 +6208,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 51f691cf25e8a41ab95ee854d24f69c9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.764151, g: 0.6438491, b: 0.378471, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
